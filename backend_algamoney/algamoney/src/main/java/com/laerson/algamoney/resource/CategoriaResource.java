@@ -2,7 +2,6 @@ package com.laerson.algamoney.resource;
 
 import com.laerson.algamoney.model.Categoria;
 import com.laerson.algamoney.repository.CategoriaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -14,8 +13,12 @@ import java.util.List;
 @RequestMapping("categorias")
 public class CategoriaResource {
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+    private final CategoriaRepository categoriaRepository;
+
+    public CategoriaResource(CategoriaRepository categoriaRepository) {
+        this.categoriaRepository = categoriaRepository;
+    }
+
 
     @GetMapping
     public List<Categoria> listar(){
