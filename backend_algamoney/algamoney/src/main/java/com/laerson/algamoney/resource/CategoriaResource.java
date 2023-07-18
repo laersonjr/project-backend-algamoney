@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class CategoriaResource {
     }
 
     @GetMapping("/{codigo}")
-    public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo){
+    public ResponseEntity<Categoria> buscarPeloCodigo(@Valid @PathVariable Long codigo){
         return this.categoriaRepository.findById(codigo).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
